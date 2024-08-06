@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="x-icon" href="./images/siteLogo.png">
+  <link rel="stylesheet" href="./css/home_style.css">
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Health Care</title>
+</head>
+
+<body>
+<!-- ------------ heder-sec------------  -->
+ <section class="header-sec">
+    <nav class="navbar navbar-expand-md px-2">
+      <div class="container-fluid">
+        <img src="./images/siteLogo.png" alt="">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+            <li class="nav-item home">
+              <a class="nav-link" href="#hero">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#doctor">Doctors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+          </ul>
+          <button type="button" class="btn btn-primary mb-1">Logout</button><br>
+          <a href="#" class="logout-link">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </section>
+<!-- ----------- hero-sec---------  -->
+  <section class="hero-sec py-5 mt-2" id="hero">
+    <div class="container">
+      <div class="row patient-div">
+        <div class="col-sm-6 text-center">
+          <div class="patient-info d-flex ">
+
+            <div class="patient-img">
+              <img src="./images/patient-img.png" alt="">
+            </div>
+
+            <div class="patient-detail ps-5">
+              <h3>Michelle</h3>
+              <h5>ID: 12345</h5>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-6 text-center">
+          <div class="view-btn justify-content-end">
+            <button type="button" class="btn">View Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- ------------ card-sec--------- -->
+<section class="card-sec py-5 mt-4">
+  <div class="container">
+    <div class="row patient-div">
+      <div class="col-md-4 text-center">
+        <div class="card1">
+          <input type="file" name="uploadFile" id="file" style="display: none; visibility: none;">
+          <label for="file"><i class="fa-solid fa-folder-plus"></i></label>
+          <h2>Upload Your Report</h2>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="card2">
+          <a href="#"><i class="fa-solid fa-calendar-check"></i></a>
+          <h2>Doctor Appointment </h2>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="card3">
+          <a href="#"><i class="fa-solid fa-capsules"></i></a>
+          <h2>Order Medicine Online</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>    
+
+<!-- ------ search sec --------  -->
+<section class="search-sec py-5 mt-3">
+  <div class="container">
+    <div class="search d-flex  justify-content-center align-items-center">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Find Top Doctors  <input type="text" name="search" placeholder="Search here..."></span>
+    </div>
+  </div>
+</section>
+
+<!-- ------- doctor section --------  -->
+<section class="doctor-sec py-5" id="doctor">
+  <div class="container">
+      <div class="row text-center">
+        <div class="col-lg-3">
+          <div class="doctor1 doc-div">
+            <div class="doctor-img">
+                <img src="./images/doctor-1-img.png" alt="" class="w-100">
+            </div>
+            <div class="doctor-info mt-4">
+                <h2 class="fs-5">Harsh Shah</h2>
+                <h4>MBBS,MD</h4>
+                <button type="button" class="btn btn-primary viewmore-btn">View</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="doctor2 doc-div">
+            <div class="doctor-img">
+              <img src="./images/doctor2.png" alt="" class="w-100">
+          </div>
+          <div class="doctor-info mt-4">
+              <h2 class="fs-5">Riya Patel</h2>
+              <h4>MBBS,MS</h4>
+              <button type="button" class="btn btn-primary viewmore-btn">View</button>
+          </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="doctor3 doc-div">
+            <div class="doctor-img">
+              <img src="./images/doctor-1-img.png" alt="" class="w-100">
+          </div>
+          <div class="doctor-info mt-4">
+              <h2 class="fs-5">Jay Patel</h2>
+              <h4>BHMS</h4>
+              <button type="button" class="btn btn-primary viewmore-btn">View</button>
+          </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="doctor4 doc-div">
+            <div class="doctor-img">
+              <img src="./images/doctor2.png" alt="" class="w-100">
+          </div>
+          <div class="doctor-info mt-4">
+              <h2 class="fs-5">Khushi Gupta</h2>
+              <h4>MBBS</h4>
+              <button type="button" class="btn btn-primary viewmore-btn">View</button>
+          </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</section>
+
+
+  <!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
+  <script src="./js/bootstrap.min.js"></script>
+</body>
+
+</html>
