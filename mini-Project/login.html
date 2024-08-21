@@ -24,20 +24,41 @@
                             <input type="text" placeholder="Username" class="uname" name="uname">
                         </div>
                         <div class="input-field">
-                            <span><i class="fa-solid fa-lock"></i></span>
-                            <input type="Password" placeholder="Password" class="pwd" name="pwd">
+                            <span class="lock"><i class="fa-solid fa-lock"></i></span>
+                            <input type="Password" placeholder="Password" class="pwd" name="pwd" id="password">
+                            <img src="./images/open-eye-icon.png" alt="" id="eyeicon" onclick="pass()" class="pass-icon">
                         </div>
                         <div class="login-btn">
                             <button type="button" class="btn w-75">Login</button>
                         </div>
                         <div class="reg-link">
-                            <span>Don't Have An Account? <a href="./demo_reg.html" target="_blank">Sign Up</a></span>
+                            <span>Don't Have An Account? <a href="./registration.html" target="_blank">Sign Up</a></span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     
+        <script>
+            var a;
+            function  pass()
+            {
+                if(a==1)
+                {
+                    document.getElementById('password').type='password';
+                    document.getElementById('eyeicon').src='./images/open-eye-icon.png';
+                    a=0;
+                }
+                else
+                {
+                    document.getElementById('password').type='text';
+                    document.getElementById('eyeicon').src='./images/hidden-eye-icon.png';
+                    a=1;
+                }  
+            } 
+
+            
+        </script>
 
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
