@@ -36,11 +36,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
+                                <img src="./images/open-eye-icon.png" alt="" onclick="pass1()" id="eyeicon">
                                 <input type="password" class="form-control" id="password"
                                     placeholder="Enter your password" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirmPassword">Confirm Password</label>
+                                <img src="./images/open-eye-icon.png" alt="" id="eyeicon2" onclick="pass2()">
                                 <input type="password" class="form-control" id="confirmPassword"
                                     placeholder="Confirm your password" required>
                             </div>
@@ -63,6 +65,44 @@
         </div>
     </div>
 
+
+    <script>
+        var a;
+        function  pass1()
+        {
+            if(a==1)
+            {
+                document.getElementById('password').type='password';
+                document.getElementById('eyeicon').src='./images/open-eye-icon.png';
+                a=0;
+            }
+            else
+            {
+                document.getElementById('password').type='text';
+                document.getElementById('eyeicon').src='./images/hidden-eye-icon.png';
+                a=1;
+            }  
+        } 
+
+        var b;
+        function  pass2()
+        {
+            if(b==1)
+            {
+                document.getElementById('confirmPassword').type='password';
+                document.getElementById('eyeicon2').src='./images/open-eye-icon.png';
+                b=0;
+            }
+            else
+            {
+                document.getElementById('confirmPassword').type='text';
+                document.getElementById('eyeicon2').src='./images/hidden-eye-icon.png';
+                b=1;
+            }  
+        } 
+
+        
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
