@@ -12,8 +12,8 @@
 </head>
 
 <body>
-<!-- ------------ heder-sec------------  -->
- <section class="header-sec">
+  <!-- ------------ heder-sec------------  -->
+  <section class="header-sec">
     <nav class="navbar navbar-expand-md px-2">
       <div class="container-fluid">
         <img src="./images/siteLogo.png" alt="">
@@ -28,22 +28,23 @@
               <a class="nav-link" href="#hero">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#doctor">Doctors</a>
+              <a class="nav-link" href="#service">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="#doctor">Doctors</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact Us</a>
             </li>
           </ul>
+          <a href="profile.html" class="view-profile-link">Edit Profile</a>
           <button type="button" class="btn btn-primary mb-1">Logout</button><br>
           <a href="#" class="logout-link">Logout</a>
         </div>
       </div>
     </nav>
   </section>
-<!-- ----------- hero-sec---------  -->
+  <!-- ----------- hero-sec---------  -->
   <section class="hero-sec py-5 mt-2" id="hero">
     <div class="container">
       <div class="row patient-div">
@@ -63,108 +64,256 @@
         </div>
         <div class="col-sm-6 text-center">
           <div class="view-btn justify-content-end">
-            <button type="button" class="btn">View Profile</button>
+            <button type="button" class="btn"> <a href="profile.html" target="_self">View Profile</a></button>
           </div>
         </div>
       </div>
     </div>
   </section>
-<!-- ------------ card-sec--------- -->
-<section class="card-sec py-5 mt-4">
-  <div class="container">
-    <div class="row patient-div">
-      <div class="col-md-4 text-center">
-        <div class="card1">
-          <input type="file" name="uploadFile" id="file" style="display: none; visibility: none;">
-          <label for="file"><i class="fa-solid fa-folder-plus"></i></label>
-          <h2>Upload Your Report</h2>
+  <!-- ------------ card-sec--------- -->
+  <section class="card-sec py-5 mt-4" id="service">
+    <div class="container">
+      <div class="row patient-div">
+        <div class="col-md-6 text-center">
+          <div class="card1">
+            <input type="file" name="uploadFile" id="file" style="display: none; visibility: none;">
+            <label for="file"><i class="fa-solid fa-folder-plus"></i></label>
+            <h2>Upload Your Report</h2>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 text-center">
-        <div class="card2">
-          <a href="#"><i class="fa-solid fa-calendar-check"></i></a>
-          <h2>Doctor Appointment </h2>
-        </div>
-      </div>
-      <div class="col-md-4 text-center">
-        <div class="card3">
-          <a href="#"><i class="fa-solid fa-capsules"></i></a>
-          <h2>Order Medicine Online</h2>
+        <!-- <div class="col-md-4 text-center">
+          <div class="card2">
+            <a href="#"><i class="fa-solid fa-calendar-check"></i></a>
+            <h2>Doctor Appointment </h2>
+          </div>
+        </div> -->
+        <div class="col-md-6 text-center">
+          <div class="card3">
+            <a href="#"><i class="fa-solid fa-capsules"></i></a>
+            <h2>Order Medicine Online</h2>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>    
+  </section>
 
-<!-- ------ search sec --------  -->
-<section class="search-sec py-5 mt-3">
-  <div class="container">
-    <div class="search d-flex  justify-content-center align-items-center">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <span>Find Top Doctors  <input type="text" name="search" placeholder="Search here..."></span>
+  <!-- ------ search sec --------  -->
+  <section class="search-sec mt-3">
+    <div class="container">
+      <div class="search">
+        <div class="find-head">
+          <span>Find Top Doctors</span>
+        </div>
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" name="search" placeholder="Search here...">
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ------- doctor section --------  -->
-<section class="doctor-sec py-5" id="doctor">
-  <div class="container">
+  <!-- ------- doctor section --------  -->
+  <section class="doctor-sec pt-1 pb-5" id="doctor">
+    <div class="container">
       <div class="row text-center">
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 pt-3">
           <div class="doctor1 doc-div">
             <div class="doctor-img">
-                <img src="./images/doctor-1-img.png" alt="" class="w-100">
+              <img src="./images/doctor-1-img.png" alt="" class="w-100">
             </div>
             <div class="doctor-info mt-4">
-                <h2 class="fs-5">Harsh Shah</h2>
-                <h4>MBBS,MD</h4>
-                <button type="button" class="btn btn-primary viewmore-btn">View</button>
+              <h2 class="fs-5">Harsh Shah</h2>
+              <h4>MBBS,MD</h4>
+
+              <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Detail:</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col">
+                          <div class="harsh-info text-start">
+                            <h2>Harsh Shah</h2>
+                            <h4>MBBS,MD</h4>
+                            <h6>Experience: <span>7 Year</span></h6>
+                            <p class="m-0 pt-2"> <b>Contact:</b> <br> 7099550345</p>
+                            <p> <b>Email ID:</b> Harshshah@gmail.com</p>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="harsh-img">
+                            <img src="./images/doctor-1-img.png" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Make
+                        Appointment</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Appointment Form</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                      <div class="input-field my-1">
+                        <!-- <label for="fname">Full Name</label> -->
+                        <input type="text" name="fname" placeholder="Enter Full Name" class="w-100 p-1">
+                      </div>
+
+                      <div class="input-field my-1">
+                        <!-- <label for="age">Age</label> -->
+                        <input type="text" name="age" placeholder="Enter Your Age" class="w-100 p-1">
+                      </div>
+
+                      <div class="input-field my-2">
+                        <label for="gender" class="me-3">Gender</label>
+                        <input type="radio" name="gender" value="Male" class="ms-1 py-2"> Male
+                        <input type="radio" name="gender" value="Female" class="ms-3"> Female
+                      </div>
+
+                      <div class="input-field my-2">
+                        <!-- <label for="mono">Contact Number</label> -->
+                        <input type="text" name="mono" placeholder="Enter Valid Phone Number" class="w-100 p-1">
+                      </div>
+
+                      <div class="input-field my-2">
+                        <!-- <label for="email">Email Id</label> -->
+                        <input type="text" name="email" placeholder="Enter Email ID" class="w-100 p-1">
+                      </div>
+                      <div class="input-field m-2">
+                        <textarea name="address" id="address" rows="4" cols="40" placeholder="Write Address here..."
+                          class="p-1 mt-1"></textarea>
+                      </div>
+
+                      <div class="input-field m-2">
+                        <textarea name="illness" id="illness" rows="4" cols="40"
+                          placeholder="Write Description About Your illness..." class="p-1 mt-1"></textarea>
+                      </div>
+
+                      <div class="input-field">
+                        <label for="time">Date Time</label>
+                        <input type="datetime-local" name="dtime" class="p-1">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="" data-bs-toggle="modal">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">View</button>
+
             </div>
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 pt-3">
           <div class="doctor2 doc-div">
             <div class="doctor-img">
               <img src="./images/doctor2.png" alt="" class="w-100">
-          </div>
-          <div class="doctor-info mt-4">
+            </div>
+            <div class="doctor-info mt-4">
               <h2 class="fs-5">Riya Patel</h2>
               <h4>MBBS,MS</h4>
-              <button type="button" class="btn btn-primary viewmore-btn">View</button>
-          </div>
+
+              <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Detail</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body2">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="harsh-info text-start">
+                            <h2>Riya Patel</h2>
+                            <h4>MBBS,MS</h4>
+                            <h6>Experience: <span>5 Year</span></h6>
+                            <p class="m-0 pt-2">Contact: 9904656503</p>
+                            <p>riya123@gmail.com</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="riya-img">
+                            <img src="./images/doctor2.png" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Make
+                        Appointment</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Hide this modal and show the first with the button below.
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle"
+                        data-bs-toggle="modal">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">View</button>
+              <!-- <button type="button" class="btn btn-primary viewmore-btn">View</button> -->
+            </div>
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 pt-3">
           <div class="doctor3 doc-div">
             <div class="doctor-img">
               <img src="./images/doctor-1-img.png" alt="" class="w-100">
-          </div>
-          <div class="doctor-info mt-4">
+            </div>
+            <div class="doctor-info mt-4">
               <h2 class="fs-5">Jay Patel</h2>
               <h4>BHMS</h4>
               <button type="button" class="btn btn-primary viewmore-btn">View</button>
-          </div>
+            </div>
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-6 pt-3">
           <div class="doctor4 doc-div">
             <div class="doctor-img">
               <img src="./images/doctor2.png" alt="" class="w-100">
-          </div>
-          <div class="doctor-info mt-4">
+            </div>
+            <div class="doctor-info mt-4">
               <h2 class="fs-5">Khushi Gupta</h2>
               <h4>MBBS</h4>
               <button type="button" class="btn btn-primary viewmore-btn">View</button>
-          </div>
+            </div>
           </div>
         </div>
 
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 
 
   <!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
