@@ -41,6 +41,7 @@
 .login-sec .login-info input:focus{
     outline: none;
 }
+/* {} */
 .login-sec .login-info .input-field{
     margin: 25px 0; 
     position: relative;
@@ -54,6 +55,15 @@
     left: 15%;
     padding-right: 10px;
 }
+.login-sec .login-info .input-field img{
+    position: absolute;
+    top: 22%;
+    right: 13%;
+    padding-right: 10px;
+    cursor: pointer;
+    width: 7%;
+}
+
 .login-sec .login-info h1{
     margin-bottom: 30px;
 }
