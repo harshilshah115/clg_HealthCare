@@ -27,3 +27,14 @@ body {
     background-color: #32665bfa;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.card-body .form-group 
+{
+    position: relative;
+}
+.card-body .form-group img
+{
+    position: absolute;
+    bottom: 3%;
+    right: 2%;
+    width: 6%;
+}
