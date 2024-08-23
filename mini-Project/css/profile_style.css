@@ -40,4 +40,12 @@
     background-color: #32665bfa;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
+.form-group{
+    position: relative;
+}
+.form-group  img{
+    width: 5%;
+    position: absolute;
+    bottom: 12%;
+    right: 1%;
+}
