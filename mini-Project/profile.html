@@ -53,11 +53,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="pwd"
-                                    placeholder="Enter your password" required>
+                                <img src="./images/open-eye-icon.png" alt="" id="eyeicon" onclick="pass()" class="pass-icon">
+                                <input type="password" class="form-control" id="password" name="pwd" placeholder="Enter your password" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirmPassword">Confirm Password</label>
+                                <img src="./images/open-eye-icon.png" alt="" id="eyeicon2" onclick="pass2()" class="pass-icon2">
                                 <input type="password" class="form-control" id="confirmPassword" name="confpwd"
                                     placeholder="Confirm your password" required>
                             </div>
@@ -72,5 +73,42 @@
     </div>
 
     <script src="./js/bootstrap.min.js"></script>
+    <script>
+        var a;
+        function  pass()
+        {
+            if(a==1)
+            {
+                document.getElementById('password').type='password';
+                document.getElementById('eyeicon').src='./images/open-eye-icon.png';
+                a=0;
+            }
+            else
+            {
+                document.getElementById('password').type='text';
+                document.getElementById('eyeicon').src='./images/hidden-eye-icon.png';
+                a=1;
+            }  
+        } 
+    </script>
+    
+    <script>
+        var a;
+        function  pass2()
+        {
+            if(a==1)
+            {
+                document.getElementById('confirmPassword').type='password';
+                document.getElementById('eyeicon2').src='./images/open-eye-icon.png';
+                a=0;
+            }
+            else
+            {
+                document.getElementById('confirmPassword').type='text';
+                document.getElementById('eyeicon2').src='./images/hidden-eye-icon.png';
+                a=1;
+            }  
+        } 
+    </script>
 </body>
 </html>
