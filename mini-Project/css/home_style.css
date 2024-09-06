@@ -6,11 +6,11 @@
 
 /* --------- header section ----------  */
 .header-sec{
-    /* position: fixed;
-    top: 0; */
+    position: sticky;
+    top: 0;
     width: 100%;
     z-index: 999;
-    /* background-color: #fff; */
+    background-color: #fff;
 }
 .header-sec .navbar img {
     width: 8%;
@@ -230,11 +230,11 @@
     margin-top: 5px;
     font-size: 18px;
 }
-.doctor-sec .doctor-info .modal-body .harsh-img{
+.doctor-sec .doctor-info .modal-body .doctor-img{
     height: 100%;
     width: 230px;
 }
-.doctor-sec .doctor-info .modal-body .harsh-img img{
+.doctor-sec .doctor-info .modal-body .doctor-img img{
     width: 100%;
 }
 .doctor-sec .doctor-info .modal-body input{
@@ -344,7 +344,7 @@
     }
 }
 @media (max-width:466px) {
-    .doctor-sec .doctor1 .modal-body .harsh-img {
+    .doctor-sec .doctor1 .modal-body .doctor-img {
         display: none;
     }
 }

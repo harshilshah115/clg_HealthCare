@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/profile_style.css" />
+    <link rel="stylesheet" href="/static/css/all.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <title>Profile View</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header text-center d-flex">
+              <a href="home.html" target="_self"
+                ><i class="fa-solid fa-xmark"></i
+              ></a>
+              <h3 class="fs-3 mt-1">Your Profile</h3>
+            </div>
+            <div class="card-body">
+              <form action="#" method="POST">
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input
+                    type="text"
+                    name="age"
+                    id="age"
+                    class="form-control"
+                    placeholder="Enter Your Age"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="gender">Gender</label><br />
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                    class="ms-2 py-2"
+                  />
+                  Male
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    class="ms-3"
+                  />
+                  female
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date of Birth</label>
+                  <input type="date" class="form-control" id="dob" name="dob" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Enter your email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    name="mono"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="txtusername"
+                    placeholder="Create your Username"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <img
+                    src="/static/image/open-eye-icon.png"
+                    alt=""
+                    onclick="pass1()"
+                    id="eyeicon"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="txtpassword"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <img
+                    src="/static/image/open-eye-icon.png"
+                    alt=""
+                    id="eyeicon2"
+                    onclick="pass2()"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    name="txtconfirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block w-100">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var a;
+      function pass1() {
+        if (a == 1) {
+          document.getElementById("password").type = "password";
+          document.getElementById("eyeicon").src =
+            "/static/image/open-eye-icon.png";
+          a = 0;
+        } else {
+          document.getElementById("password").type = "text";
+          document.getElementById("eyeicon").src =
+            "/static/image/hidden-eye-icon.png";
+          a = 1;
+        }
+      }
+
+      var b;
+      function pass2() {
+        if (b == 1) {
+          document.getElementById("confirmPassword").type = "password";
+          document.getElementById("eyeicon2").src =
+            "/static/image/open-eye-icon.png";
+          b = 0;
+        } else {
+          document.getElementById("confirmPassword").type = "text";
+          document.getElementById("eyeicon2").src =
+            "/static/image/hidden-eye-icon.png";
+          b = 1;
+        }
+      }
+    </script>
+
+    <script src="static/js/bootstrap.min.js"></script>
+  </body>
+</html>
