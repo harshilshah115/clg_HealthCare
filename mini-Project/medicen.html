@@ -30,6 +30,8 @@
                             <h3>Penicillin</h3>
                             <p>Penicillins treat bacterial infections like strep throat, ear infections and urinary
                                 tract infections.</p>
+                            <!-- <h5>Quantity : </h5> -->
+                            <input type="number" placeholder="Enter Quantity" class=" ps-2" id="ipquantity">
                             <h5>Amount: 350/- </h5>
                             <!-- <button type="button" class="btn btn-primary px-5 py-2">Buy</button> -->
 
@@ -92,6 +94,7 @@
                         <div class="medi-detail">
                             <h3>Insulin</h3>
                             <p>Insulin helps keep blood sugar under control and prevents diabetes complications.</p>
+                            <input type="number" placeholder="Enter Quantity" class="ps-2" id="ipquantity2">
                             <h5>Amount: 350/- </h5>
                             <!-- <button type="button" class="btn btn-primary px-5 py-2">Buy</button> -->
 
@@ -156,6 +159,7 @@
                         <h3>Penicillin</h3>
                         <p>Penicillins treat bacterial infections like strep throat, ear infections and urinary
                             tract infections.</p>
+                        <input type="number" placeholder="Enter Quantity" class=" ps-2" id="ipquantity3">
                         <h5>Amount: 350/- </h5>
                         <!-- <button type="button" class="btn btn-primary px-5 py-2">Buy</button> -->
 
@@ -218,6 +222,7 @@
                     <div class="medi-detail">
                         <h3>Insulin</h3>
                         <p>Insulin helps keep blood sugar under control and prevents diabetes complications.</p>
+                        <input type="number" placeholder="Enter Quantity" class="ps-2" id="ipquantity4">
                         <h5>Amount: 350/- </h5>
                         <!-- <button type="button" class="btn btn-primary px-5 py-2">Buy</button> -->
 
@@ -279,8 +284,16 @@
         </div>
     </section>
 
+    <script>
+        var  quantity=document.getElementById('ipquantity');
+        if(quantity <= 0){
+            window.alert("Quantity must be Greater Than Zero");
+        }
+
+    </script>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jQuery.js"></script>
 </body>
 
 </html>
