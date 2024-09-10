@@ -1,0 +1,38 @@
+body {
+    background-color: #f8f9fa;
+    background-image: url('/static/image/bg-img.png');
+    background-repeat: no-repeat;
+}
+
+.card {
+    margin-top: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.card-header {
+    background-color: #32665bfa;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #32665B;
+    border: none;
+    padding: 10px 0;
+    border-radius: 25px;
+    margin-top: 25px;
+}
+
+.btn-primary:hover {
+    background-color: #32665bfa;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.form-group{
+    position: relative;
+}
+.form-group  img{
+    width: 5%;
+    position: absolute;
+    bottom: 12%;
+    right: 1%;
+}

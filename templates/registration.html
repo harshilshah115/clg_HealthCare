@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="shortcut icon" type="x-icon" href="/static/image/siteLogo.png" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/reg_style.css" />
+
+    <script type="text/javascript">
+      function preventBack() {
+        window.history.forward();
+      }
+
+      setTimeout("preventBack()", 0);
+
+      window.onunload = function () {
+        null;
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header text-center">
+              <h3>Register</h3>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fullName"
+                    name="txtfullName"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="dob"
+                    name="txtdob"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="fullName">Age</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="age"
+                    name="txtage"
+                    placeholder="Enter your age"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="txtemail"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    name="txtphone"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="txtusername"
+                    placeholder="Create your Username"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <img
+                    src="/static/image/open-eye-icon.png"
+                    alt=""
+                    onclick="pass1()"
+                    id="eyeicon"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="txtpassword"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <img
+                    src="/static/image/open-eye-icon.png"
+                    alt=""
+                    id="eyeicon2"
+                    onclick="pass2()"
+                  />
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    name="txtconfirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  Register
+                </button>
+                <div class="signin-link text-center mt-2">
+                  <a href="{% url 'login' %}">Sign In</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var a;
+      function pass1() {
+        if (a == 1) {
+          document.getElementById("password").type = "password";
+          document.getElementById("eyeicon").src =
+            "/static/image/open-eye-icon.png";
+          a = 0;
+        } else {
+          document.getElementById("password").type = "text";
+          document.getElementById("eyeicon").src =
+            "/static/image/hidden-eye-icon.png";
+          a = 1;
+        }
+      }
+
+      var b;
+      function pass2() {
+        if (b == 1) {
+          document.getElementById("confirmPassword").type = "password";
+          document.getElementById("eyeicon2").src =
+            "/static/image/open-eye-icon.png";
+          b = 0;
+        } else {
+          document.getElementById("confirmPassword").type = "text";
+          document.getElementById("eyeicon2").src =
+            "/static/image/hidden-eye-icon.png";
+          b = 1;
+        }
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

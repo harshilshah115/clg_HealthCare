@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/medicen_style.css" />
+    <link rel="stylesheet" href="/static/css/all.min.css" />
+    <title>Medicen Page</title>
+  </head>
+
+  <body>
+    <section class="medicen_hero">
+      <div class="container-fluid">
+        <h1 class="text-center text-white">Provide Best Quality Medicen</h1>
+        <p class="text-center">
+          Medicines are chemicals or compounds used to cure, halt, or prevent
+          disease; ease symptoms; or help in the diagnosis of illnesses.
+          Advances in medicines have enabled doctors to cure many diseases and
+          save lives.
+        </p>
+        <a href="{% url 'home' %}" target="_self"
+          ><i class="fa-solid fa-xmark fs-2"></i
+        ></a>
+      </div>
+    </section>
+    <section class="medicen_buy pt-5 mt-2">
+      <div class="container">
+        <h1 class="text-center p-2">Medicines :</h1>
+        <div class="row text-start mt-5">
+          {% for med in medicendata %}
+          <div class="col-md-6">
+            <div class="medi1 d-flex">
+              <div class="medi-detail">
+                <h3>{{med.medicines_name}}</h3>
+                <p>{{med.medicines_description}}</p>
+                <!-- <h5>Quantity : </h5> -->
+                {% comment %}
+                <input
+                  type="number"
+                  placeholder="Enter Quantity"
+                  class="ps-2"
+                  id="ipquantity"
+                />
+                {% endcomment %}
+                <input
+                  type="number"
+                  placeholder="Enter Quantity"
+                  class="ps-2 quantity-input"
+                  id="quantity_{{ forloop.counter }}"
+                  data-price="{{ med.medicines_price }}"
+                />
+                <h5>Amount: {{med.medicines_price}}/-</h5>
+                <!-- <button type="button" class="btn btn-primary px-5 py-2">Buy</button> -->
+
+                <!-- Button trigger modal -->
+                {% comment %}
+                <button
+                  type="button"
+                  class="btn btn-primary px-5 py-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Buy
+                </button>
+                {% endcomment %}
+
+                <button
+                  type="button"
+                  class="btn btn-primary px-5 py-2 buy-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal_{{ forloop.counter }}"
+                  data-medname="{{ med.medicines_name }}"
+                >
+                  Buy
+                </button>
+
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal_{{ forloop.counter }}"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel_{{ forloop.counter }}"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5 text-black border-0"
+                          id="exampleModalLabel"
+                        >
+                          Medicine Bill
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <table>
+                          <tr>
+                            <th>Company Name :</th>
+                            <td>HealthCare</td>
+                          </tr>
+                          <tr>
+                            <th>Customer Name :</th>
+                            <td>{{customer_name }}</td>
+                          </tr>
+                          <tr>
+                            <th>Medicine Name :</th>
+                            <td id="medicineName_{{ forloop.counter }}">N/A</td>
+                          </tr>
+                          <tr>
+                            <th>Quantity :</th>
+                            <td id="quantityDisplay_{{ forloop.counter }}">
+                              N/A
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Amount</th>
+                            <td id="amountDisplay_{{ forloop.counter }}">
+                              N/A
+                            </td>
+                          </tr>
+                        </table>
+                        <br /><br />
+                        <h2 class="text-center">Thank You</h2>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-primary px-4 py-1"
+                          data-bs-dismiss="modal"
+                        >
+                          OK
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="medi-img">
+                <img src="{{med.medicines_image.url}}" alt="" />
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Handle dynamic modal data for each medicine
+      document.querySelectorAll(".buy-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          const medName = button.getAttribute("data-medname");
+          const index = button.getAttribute("data-bs-target").split("_")[1];
+          const quantityInput = document.getElementById("quantity_" + index);
+          const quantity = quantityInput.value;
+          const price = quantityInput.getAttribute("data-price");
+          const amount = quantity * price;
+
+          document.getElementById("medicineName_" + index).textContent =
+            medName;
+          document.getElementById("quantityDisplay_" + index).textContent =
+            quantity;
+          document.getElementById("amountDisplay_" + index).textContent =
+            amount + " /-";
+        });
+      });
+    </script>
+
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jQuery.js"></script>
+  </body>
+</html>

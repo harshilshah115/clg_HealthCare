@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="x-icon" href="/static/image/siteLogo.png" />
+    <link rel="stylesheet" href="/static/css/home_style.css" />
+    <link rel="stylesheet" href="/static/css/all.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <title>Health Care</title>
+    <script type="text/javascript">
+      function preventBack() {
+        window.history.forward();
+      }
+
+      setTimeout("preventBack()", 0);
+
+      window.onunload = function () {
+        null;
+      };
+    </script>
+  </head>
+
+  <body>
+    <!-- ------------ heder-sec------------  -->
+    <section class="header-sec">
+      <nav class="navbar navbar-expand-md px-2">
+        <div class="container-fluid">
+          <img src="/static/image/siteLogo.png" alt="" />
+          <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+              <li class="nav-item home">
+                <a class="nav-link" href="#hero">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#service">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#doctor">Doctors</a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
+              </li>-->
+            </ul>
+            <a href="{% url 'profile' %}" class="view-profile-link"
+              >Edit Profile</a
+            >
+            <a href="{% url 'logout' %}"
+              ><button type="button" class="btn btn-primary mb-1">
+                Logout
+              </button></a
+            ><br />
+          </div>
+        </div>
+      </nav>
+    </section>
+    <!-- ----------- hero-sec---------  -->
+    <section class="hero-sec py-5 mt-2" id="hero">
+      {% csrf_token %}
+      <div class="container">
+        <div class="row patient-div">
+          <div class="col-sm-6 text-center">
+            {% if profiles %}
+            <div class="patient-info d-flex">
+              <div class="patient-img">
+                {% if profiles.image_reg %}
+                <img
+                  src="{{ profiles.image_reg.url }}"
+                  alt="{{ profiles.fullname_reg }}"
+                />
+                {% else %}
+                <img src="/static/image/default_user.png" alt="Default Image" />
+                {% endif %}
+              </div>
+              <div class="patient-detail ps-5">
+                <h3>{{ profiles.fullname_reg }}</h3>
+                <h5>{{ profiles.id }}</h5>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-sm-6 text-center">
+            <div class="view-btn justify-content-end">
+              <button type="button" class="btn">
+                <a href="{% url 'profile' %}" target="_self">View Profile</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------------ card-sec--------- -->
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <section class="card-sec py-5 mt-4" id="service">
+        <div class="container">
+          <div class="row patient-div">
+            <div class="col-md-6 text-center">
+              <div class="card1">
+                <input
+                  type="file"
+                  name="report"
+                  id="file"
+                  style="display: none; visibility: none"
+                  onchange="uploadFile()"
+                />
+                <label for="file"
+                  ><i class="fa-solid fa-folder-plus"></i
+                ></label>
+                <h2>Upload Your Report</h2>
+              </div>
+            </div>
+            <!-- <div class="col-md-4 text-center">
+          <div class="card2">
+            <a href="#"><i class="fa-solid fa-calendar-check"></i></a>
+            <h2>Doctor Appointment </h2>
+          </div>
+        </div> -->
+            <div class="col-md-6 text-center">
+              <div class="card3">
+                <a href="{% url 'medicen' %}"
+                  ><i class="fa-solid fa-capsules"></i
+                ></a>
+                <h2>Order Medicine Online</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+    <!-- ------ search sec --------  -->
+    <section class="search-sec mt-3">
+      <div class="container">
+        <div class="search">
+          <div class="find-head">
+            <span>Find Top Doctors</span>
+          </div>
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="doctor-search"
+              name="search"
+              placeholder="Search here..."
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------- doctor section --------  -->
+    <section class="doctor-sec pt-1 pb-5" id="doctor">
+      <div class="container">
+        <div class="row text-center" id="doctor-results">
+          {% for doc in doctordata %}
+          <div
+            class="col-lg-3 col-md-6 pt-3 doctor-card"
+            data-name="{{ doc.doctor_name }}"
+          >
+            <div class="doctor1 doc-div">
+              <div class="doctor-img">
+                <img src="{{doc.doctor_image.url}}" alt="" class="w-100" />
+              </div>
+              <div class="doctor-info mt-4">
+                <h2 class="fs-5">{{doc.doctor_name}}</h2>
+                <h4>{{ doc.doctor_qualification }}</h4>
+
+                <div
+                  class="modal fade"
+                  id="exampleModalToggle"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalToggleLabel"
+                        >
+                          Detail:
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col">
+                            <div class="harsh-info text-start">
+                              <h2>{{ doc.doctor_name }}</h2>
+                              <h4>{{ doc.doctor_qualification }}</h4>
+                              <h6>
+                                Experience:
+                                <span>{{ doc.doctor_experience }} Year</span>
+                              </h6>
+                              <p class="m-0 pt-2">
+                                <b>Contact:</b> <br />{{ doc.doctor_contact }}
+                              </p>
+                              <p><b>Email ID:</b> {{ doc.doctor_email }}</p>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="harsh-img">
+                              <img
+                                src="/static/image/doctor-1-img.png"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-primary"
+                          data-bs-target="#exampleModalToggle2"
+                          data-bs-toggle="modal"
+                        >
+                          Make Appointment
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="modal fade"
+                  id="exampleModalToggle2"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel2"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalToggleLabel2"
+                        >
+                          Appointment Form
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body text-start">
+                        <div class="input-field my-1">
+                          <!-- <label for="fname">Full Name</label> -->
+                          <input
+                            type="text"
+                            name="fname"
+                            placeholder="Enter Full Name"
+                            class="w-100 p-1"
+                          />
+                        </div>
+
+                        <div class="input-field my-1">
+                          <!-- <label for="age">Age</label> -->
+                          <input
+                            type="text"
+                            name="age"
+                            placeholder="Enter Your Age"
+                            class="w-100 p-1"
+                          />
+                        </div>
+
+                        <div class="input-field my-2">
+                          <label for="gender" class="me-3">Gender</label>
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="Male"
+                            class="ms-1 py-2"
+                          />
+                          Male
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="Female"
+                            class="ms-3"
+                          />
+                          Female
+                        </div>
+
+                        <div class="input-field my-2">
+                          <!-- <label for="mono">Contact Number</label> -->
+                          <input
+                            type="text"
+                            name="mono"
+                            placeholder="Enter Valid Phone Number"
+                            class="w-100 p-1"
+                          />
+                        </div>
+
+                        <div class="input-field my-2">
+                          <!-- <label for="email">Email Id</label> -->
+                          <input
+                            type="text"
+                            name="email"
+                            placeholder="Enter Email ID"
+                            class="w-100 p-1"
+                          />
+                        </div>
+                        <div class="input-field m-2">
+                          <textarea
+                            name="address"
+                            id="address"
+                            rows="4"
+                            cols="40"
+                            placeholder="Write Address here..."
+                            class="p-1 mt-1"
+                          ></textarea>
+                        </div>
+
+                        <div class="input-field m-2">
+                          <textarea
+                            name="illness"
+                            id="illness"
+                            rows="4"
+                            cols="40"
+                            placeholder="Write Description About Your illness..."
+                            class="p-1 mt-1"
+                          ></textarea>
+                        </div>
+
+                        <div class="input-field">
+                          <label for="time">Date Time</label>
+                          <input
+                            type="datetime-local"
+                            name="dtime"
+                            class="p-1"
+                          />
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-primary"
+                          data-bs-target=""
+                          data-bs-toggle="modal"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-lg-3 col-md-6 pt-3">
+            <div class="doctor2 doc-div">
+              <div class="doctor-img">
+                <img src="./images/doctor2.png" alt="" class="w-100" />
+              </div>
+              <div class="doctor-info mt-4">
+                <h2 class="fs-5">Riya Patel</h2>
+                <h4>MBBS,MS</h4>
+
+                <div
+                  class="modal fade"
+                  id="exampleModalToggle"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalToggleLabel"
+                        >
+                          Detail
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body2">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="harsh-info text-start">
+                              <h2>Riya Patel</h2>
+                              <h4>MBBS,MS</h4>
+                              <h6>Experience: <span>5 Year</span></h6>
+                              <p class="m-0 pt-2">Contact: 9904656503</p>
+                              <p>riya123@gmail.com</p>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="riya-img">
+                              <img src="./images/doctor2.png" alt="" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-primary"
+                          data-bs-target="#exampleModalToggle2"
+                          data-bs-toggle="modal"
+                        >
+                          Make Appointment
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="modal fade"
+                  id="exampleModalToggle2"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel2"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1
+                          class="modal-title fs-5"
+                          id="exampleModalToggleLabel2"
+                        >
+                          Modal 2
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        Hide this modal and show the first with the button
+                        below.
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          class="btn btn-primary"
+                          data-bs-target="#exampleModalToggle"
+                          data-bs-toggle="modal"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  View
+                </button>
+                Also Comment <button type="button" class="btn btn-primary viewmore-btn">View</button> 
+              </div>
+            </div>
+          </div>-->
+
+          <!--<div class="col-lg-3 col-md-6 pt-3">
+            <div class="doctor3 doc-div">
+              <div class="doctor-img">
+                <img src="./images/doctor-1-img.png" alt="" class="w-100" />
+              </div>
+              <div class="doctor-info mt-4">
+                <h2 class="fs-5">Jay Patel</h2>
+                <h4>BHMS</h4>
+                <button type="button" class="btn btn-primary viewmore-btn">
+                  View
+                </button>
+              </div>
+            </div>
+          </div>-->
+
+          <!--<div class="col-lg-3 col-md-6 pt-3">
+            <div class="doctor4 doc-div">
+              <div class="doctor-img">
+                <img src="./images/doctor2.png" alt="" class="w-100" />
+              </div>
+              <div class="doctor-info mt-4">
+                <h2 class="fs-5">Khushi Gupta</h2>
+                <h4>MBBS</h4>
+                <button type="button" class="btn btn-primary viewmore-btn">
+                  View
+                </button>
+              </div>
+            </div>
+          </div>-->
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <script>
+      function uploadFile() {
+        var formData = new FormData();
+        var fileInput = document.getElementById("file");
+
+        if (fileInput.files.length > 0) {
+          formData.append("report", fileInput.files[0]);
+
+          // Perform AJAX request
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "{% url 'upload_report' %}", true);
+
+          // Add CSRF token
+          xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              alert("File uploaded successfully");
+              location.reload();
+            } else {
+              alert("File upload failed. Please try again.");
+            }
+          };
+
+          xhr.send(formData);
+        }
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the search input element
+        const searchInput = document.getElementById("doctor-search");
+
+        // Add event listener to filter doctors based on the search input
+        searchInput.addEventListener("input", function () {
+          const query = this.value.toLowerCase(); // Get the search query
+          const doctorCards = document.querySelectorAll(".doctor-card"); // Get all doctor cards
+
+          doctorCards.forEach((card) => {
+            const doctorName = card.getAttribute("data-name").toLowerCase(); // Get doctor name in lower case
+            if (doctorName.includes(query)) {
+              card.style.display = "block"; // Show the card if it matches the search query
+            } else {
+              card.style.display = "none"; // Hide the card if it doesn't match
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------- header section ----------  */
+.header-sec{
+    /* position: fixed;
+    top: 0; */
+    width: 100%;
+    z-index: 999;
+    /* background-color: #fff; */
+}
+.header-sec .navbar img {
+    width: 8%;
+}
+
+.header-sec .navbar-nav .nav-link {
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.header-sec .navbar-nav .nav-item {
+    padding: 0 12px;
+}
+
+.header-sec .navbar-nav a {
+    position: relative;
+    padding: 5px;
+    /* color: #fff !important; */
+}
+
+.header-sec .navbar-nav a::after {
+    content: "";
+    position: absolute;
+    left: 1%;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    background-color: #0d6efd;
+    transition: 0.3s;
+}
+
+.header-sec .navbar-nav a:hover::after {
+    width: 100%;
+}
+
+.header-sec .logout-link {
+    display: none;
+}
+.header-sec .navbar button{
+    font-weight: 500;
+    padding: 6px 20px;
+}
+.header-sec .navbar .view-profile-link{
+    text-decoration: none;
+    font-size: 18px;
+    display: none;
+}
+.header-sec .navbar .view-profile-link:hover{
+    text-decoration: underline;
+}
+
+/* ------------- hero section ---------  */
+.hero-sec {
+    background-color: #62d2a2;
+}
+
+.hero-sec .patient-info {
+    align-items: center;
+    justify-content: left;
+    color: #fff;
+}
+
+.hero-sec .patient-info .patient-img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 40%;
+    background-color: #fff;
+}
+
+.hero-sec .patient-info .patient-img img {
+    width: 100%;
+}
+
+.hero-sec .view-btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.hero-sec .view-btn button{
+    position: relative;
+    width: 40%;
+    padding: 12px 0;
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    border-radius: 12px;
+    border: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+.hero-sec .view-btn button a{
+    color: black;
+    text-decoration: none;
+}
+.hero-sec .view-btn button:hover a{
+    color: white;
+    /* overflow: hidden; */
+}
+.hero-sec .view-btn button::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width:0%;
+    background-color: #0d6efd;
+    z-index: -1;
+    transition: 0.4s;
+}
+.hero-sec .view-btn button:hover::after
+{
+    width: 100%;
+}
+
+/* ------------ card-sec -------------  */
+.card-sec{
+    margin-top: 20px;
+}
+.card-sec .card1,
+.card-sec .card2,
+.card-sec .card3{
+    padding: 20px;
+    height: 180px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.card-sec .card1:hover,
+.card-sec .card2:hover,
+.card-sec .card3:hover{
+    border: 1px solid lightgreen;
+}
+.card-sec i{
+    font-size: 50px;
+    padding-top: 20px;
+    color: aqua;
+}
+.card-sec .patient-div h2{
+    font-size: 24px;
+    line-height: 40px;
+}
+.card-sec .card1 label{
+    cursor: pointer;
+}
+
+
+/* -------- search section ---------  */
+.search-sec{
+    padding: 35px 0;
+}
+.search-sec .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-sec .search span{
+    font-size: 22px;
+    font-weight: 500;
+    padding-right: 5px;
+}
+.search-sec .search .search-bar{
+    position: relative;
+}
+.search-sec .search .search-bar input{
+    border: none;
+    border-bottom: 2px solid #97979761;
+    padding:5px 30px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.search-sec .search .search-bar input:focus{
+    outline: none;
+}
+.search-sec .search i{
+    position: absolute;
+    top: 25%;
+    left: 4%;
+    font-size: 25px;
+    color: #97979761;
+}
+.search-sec .search span input:focus .search i{
+    color: black;
+}
+
+/* ----------- doctor sec----------  */
+.doctor-sec .doc-div{
+    height: 350px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* border: 2px solid black; */
+}
+.doctor-sec .doctor-info h4{
+    font-size: 16px;
+}
+.doctor-sec .doc-div .doctor-img{
+    height: 180px;
+    overflow: hidden;
+}
+.doctor-sec .doc-div .doctor-img img{
+    padding-top: 10px;
+    align-items: center;
+    transform: scale(0.9);
+    height: 100%;
+    object-fit: contain;
+    transition: 0.3s;
+}
+.doctor-sec .doc-div:hover img{
+    transform: scale(1);
+}
+
+.doctor-sec .doctor1 .doctor-img img,
+.doctor-sec .doctor3 .doctor-img img{
+    padding-right: 20px;
+}
+.doctor-sec .doctor-info button{
+    padding: 5px 30px;
+    margin-top: 5px;
+    font-size: 18px;
+}
+.doctor-sec .doctor-info .modal-body .harsh-img{
+    height: 100%;
+    width: 230px;
+}
+.doctor-sec .doctor-info .modal-body .harsh-img img{
+    width: 100%;
+}
+.doctor-sec .doctor-info .modal-body input{
+    border: none;
+    border-bottom: 2px solid #d9d9d9d1 !important;
+}
+
+.doctor-sec .doctor-info .modal-body textarea{
+    border: none;
+    border: 2px solid #d9d9d9d1;
+    border-radius: 6px;
+}
+.doctor-sec .doctor-info .modal-body input:focus,
+.doctor-sec .doctor-info .modal-body textarea:focus{
+    outline:none;
+}
+
+@media (max-width:992px) {
+    .card-sec .patient-div h2{
+        font-size: 20px;
+        line-height: 25px;
+        padding-top: 10px;
+    }
+    .card-sec .patient-div .card1 h2{
+        width: 168px;
+    }
+    .search-sec .search i{
+        padding-right: 12px;
+    }
+}
+
+@media (max-width:767px) {
+    .header-sec .navbar img {
+        width: 12%;
+    }
+
+    .header-sec .navbar-nav a:hover::after {
+        display: inline-block;
+        width: 10%;
+        left: 0;
+    }
+
+    .header-sec .logout-link {
+        display: block;
+        padding-left: 16px;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: 500;
+        color: black;
+    }
+
+    .header-sec .logout-link:hover {
+        color: lightskyblue;
+        text-decoration: underline;
+    }
+    .header-sec .navbar .view-profile-link{
+        display: block;
+        padding-left: 16px;
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+    .header-sec .navbar .btn {
+        display: none;
+    }
+    .hero-sec .patient-info{
+        justify-content: center;
+    }
+    .hero-sec .patient-info .patient-detail h3{
+        font-size: 22px;
+        margin-bottom: 0;
+    }
+    .hero-sec .patient-info .patient-detail h5{
+        font-size: 16px;
+    }
+    .hero-sec .view-btn button{
+        width: 50%;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+    .hero-sec .patient-info .patient-img{
+        width: 100%;
+    }
+    .card-sec .patient-div .card1 h2{
+        width: auto;
+    }
+    .card-sec .patient-div .card2{
+        margin: 16px 0;
+    }
+}
+
+@media (max-width:576px) {
+    .hero-sec .view-btn{
+        display: none;
+    }
+    .hero-sec .patient-info .patient-img{
+        width: 35%;
+    }
+    .hero-sec .patient-info{
+        justify-content: space-evenly;
+    }
+    .search-sec{
+        padding: 10px 0 !important;
+    }
+    .search-sec .search .find-head span{
+        display: none;
+    }
+}
+@media (max-width:466px) {
+    .doctor-sec .doctor1 .modal-body .harsh-img {
+        display: none;
+    }
+}
