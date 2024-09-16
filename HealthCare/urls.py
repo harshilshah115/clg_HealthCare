@@ -11,6 +11,7 @@ urlpatterns = [
     path('profileup/', view.submit_update_profile, name='updateprofile'),
     path('upload_report/', view.upload_report, name='upload_report'),
     path('medicen/', view.medicen, name='medicen'),
+    path('appoinment/', view.appoinment, name='appoinment'),
     path('login/', view.submit_logout, name='logout'),
 ]
 

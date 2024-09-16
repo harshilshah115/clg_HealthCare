@@ -122,6 +122,9 @@ def medicen(request):
     # Pass the customer_name to the template
     return render(request, 'medicen.html', {'medicendata': medicendata, 'customer_name': customer_name})
 
+@login_required
+def appoinment(request):
+    return redirect(request,'appoinment.html')
 
 @login_required
 def submit_logout(request):

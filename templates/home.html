@@ -50,9 +50,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#doctor">Doctors</a>
               </li>
-              <!--<li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
-              </li>-->
+              <li class="nav-item"></li>
+                <a class="nav-link" href="{% url 'appoinment' %}">Appointment</a>
+              </li>
             </ul>
             <a href="{% url 'profile' %}" class="view-profile-link"
               >Edit Profile</a
@@ -71,7 +71,7 @@
       {% csrf_token %}
       <div class="container">
         <div class="row patient-div">
-          <div class="col-sm-6 text-center">
+          <div class="col-sm-4 text-center">
             {% if profiles %}
             <div class="patient-info d-flex">
               <div class="patient-img">
@@ -91,7 +91,15 @@
             </div>
             {% endif %}
           </div>
-          <div class="col-sm-6 text-center">
+
+          <div class="col-sm-4 m-auto">
+            <div class="appo-detail text-center text-white fs-5">
+              <p class="p-0 m-0">Last Appointment Status</p>
+              <span class="p-0 m-0">Pending</span>
+            </div>
+          </div>
+
+          <div class="col-sm-4 text-center">
             <div class="view-btn justify-content-end">
               <button type="button" class="btn">
                 <a href="{% url 'profile' %}" target="_self">View Profile</a>

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from HealthCare.models import register,doctor,medicines
+from django.contrib.admin.models import LogEntry
 # Register your models here.
 
 class RegisterAdmin(admin.ModelAdmin):
@@ -13,3 +14,6 @@ admin.site.register(doctor,DoctorAdmin)
 class MedicinesAdmin(admin.ModelAdmin):
   list_display=("medicines_name",)
 admin.site.register(medicines,MedicinesAdmin)
+
+
+# LogEntry.objects.all().delete()

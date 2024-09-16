@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,3 +137,30 @@ STATICFILES_DIRS =[
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+JAZZMIN_SETTINGS = {
+    "site_title": "HealthCare Admin",
+    "site_header": "HealthCare",
+    "site_brand": "HealthCare",
+    "site_logo": "\static\image\siteLogo.png",
+    "welcome_sign": "Welcome to the HealthCare",
+    "copyright": "HealthCare",
+    "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"app": "HealthCare"},
+        
+    ],
+    "hide_apps": ["auth"],
+    "order_with_respect_to": ["HealthCare","HealthCare.register", "HealthCare.doctor", "HealthCare.Mediciness"],
+    "icons": {
+        "HealthCare": "",
+        "HealthCare.Doctor": "fas fa-user-md",
+        "HealthCare.Register": "fas fa-user",
+        "HealthCare.Medicines": "fas fa-pills",
+    },
+    "show_ui_builder": False,
+    "hide_recent_actions": True,
+    
+}
