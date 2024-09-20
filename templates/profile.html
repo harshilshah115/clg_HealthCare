@@ -14,9 +14,9 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header text-center d-flex">
-              <a href="{% url 'home' %}" target="_self"
-                ><i class="fa-solid fa-xmark"></i
-              ></a>
+              <a href="{% url 'home' %}" target="_self">
+                <i class="fa-solid fa-xmark"></i>
+              </a>
               <h3 class="fs-3 mt-1">Your Profile</h3>
             </div>
             <div class="card-body">
@@ -24,6 +24,8 @@
                 action="{% url 'updateprofile' %}"
                 method="POST"
                 enctype="multipart/form-data"
+                id="profileForm"
+                onsubmit="return validateForm();"
               >
                 {% csrf_token %}
                 <div class="form-group">
@@ -34,18 +36,24 @@
                     id="fullName"
                     name="txtfullName"
                     placeholder="Enter your full name"
+                    value="{{profile.fullname_reg}}"
                     required
                   />
+                  <span id="fullNameError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="age">Age</label>
                   <input
-                    type="text"
+                    type="number"
                     id="age"
                     name="txtage"
                     class="form-control"
                     placeholder="Enter Your Age"
+                    value="{{profile.age_reg}}"
+                    min="1"
+                    max="100"
                   />
+                  <span id="ageError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="gender">Gender</label><br />
@@ -54,6 +62,14 @@
                     name="txtgender"
                     value="Male"
                     class="ms-2 py-2"
+                    {%
+                    if
+                    profile.gender_reg="Male"
+                    %}
+                    checked
+                    {%
+                    endif
+                    %}
                   />
                   Male
                   <input
@@ -61,8 +77,17 @@
                     name="txtgender"
                     value="female"
                     class="ms-3"
+                    {%
+                    if
+                    profile.gender_reg="female"
+                    %}
+                    checked
+                    {%
+                    endif
+                    %}
                   />
                   female
+                  <span id="genderError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="dob">Date of Birth</label>
@@ -71,7 +96,9 @@
                     class="form-control"
                     id="dob"
                     name="txtdob"
+                    value="{{ profile.dob_reg|date:'Y-m-d' }}"
                   />
+                  <span id="dobError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="email">Email address</label>
@@ -81,8 +108,10 @@
                     id="email"
                     placeholder="Enter your email"
                     name="txtemail"
+                    value="{{ profile.email_reg }}"
                     required
                   />
+                  <span id="emailError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone Number</label>
@@ -92,17 +121,25 @@
                     id="phone"
                     placeholder="Enter your phone number"
                     name="txtphone"
+                    value="{{ profile.phono_reg }}"
+                    maxlength="10"
                   />
+                  <span id="phoneError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                  <label for="phone">Upload Your Photo</label>
+                  <label for="usephoto">Upload Your Photo</label>
                   <input
                     type="file"
                     class="form-control"
                     id="usephoto"
-                    placeholder="Enter your phone number"
                     name="txtphoto"
                   />
+                  {% if profile.image_reg %}
+                  <p class="mt-2">
+                    Current Photo: {{ profile.image_reg.name }}
+                  </p>
+                  {% endif %}
+                  <span id="photoError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="username">Username</label>
@@ -112,8 +149,10 @@
                     id="username"
                     placeholder="Create your Username"
                     name="txtusername"
+                    value="{{ profile.username_reg }}"
                     required
                   />
+                  <span id="usernameError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
@@ -121,7 +160,7 @@
                     src="/static/image/open-eye-icon.png"
                     alt=""
                     id="eyeicon"
-                    onclick="pass()"
+                    onclick="togglePasswordVisibility('password', 'eyeicon')"
                     class="pass-icon"
                   />
                   <input
@@ -130,8 +169,10 @@
                     id="password"
                     name="txtpassword"
                     placeholder="Enter your password"
+                    value="{{ profile.password_reg }}"
                     required
                   />
+                  <span id="passwordError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                   <label for="confirmPassword">Confirm Password</label>
@@ -139,7 +180,7 @@
                     src="/static/image/open-eye-icon.png"
                     alt=""
                     id="eyeicon2"
-                    onclick="pass2()"
+                    onclick="togglePasswordVisibility('confirmPassword', 'eyeicon2')"
                     class="pass-icon2"
                   />
                   <input
@@ -148,8 +189,10 @@
                     id="confirmPassword"
                     name="txtconfirmPassword"
                     placeholder="Confirm your password"
+                    value="{{ profile.cpassword_reg }}"
                     required
                   />
+                  <span id="confirmPasswordError" class="text-danger"></span>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block w-100">
@@ -163,37 +206,130 @@
     </div>
 
     <script src="/static/js/bootstrap.min.js"></script>
-    <script>
-      var a;
-      function pass() {
-        if (a == 1) {
-          document.getElementById("password").type = "password";
-          document.getElementById("eyeicon").src =
-            "/static/image/open-eye-icon.png";
-          a = 0;
-        } else {
-          document.getElementById("password").type = "text";
-          document.getElementById("eyeicon").src =
-            "/static/image/hidden-eye-icon.png";
-          a = 1;
-        }
-      }
-    </script>
 
     <script>
-      var a;
-      function pass2() {
-        if (a == 1) {
-          document.getElementById("confirmPassword").type = "password";
-          document.getElementById("eyeicon2").src =
-            "./images/open-eye-icon.png";
-          a = 0;
+      function togglePasswordVisibility(passwordFieldId, iconId) {
+        var passwordField = document.getElementById(passwordFieldId);
+        var icon = document.getElementById(iconId);
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          icon.src = "/static/image/hidden-eye-icon.png";
         } else {
-          document.getElementById("confirmPassword").type = "text";
-          document.getElementById("eyeicon2").src =
-            "./images/hidden-eye-icon.png";
-          a = 1;
+          passwordField.type = "password";
+          icon.src = "/static/image/open-eye-icon.png";
         }
+      }
+
+      function validateForm() {
+        var isValid = true;
+
+        // Full Name validation
+        var fullName = document.getElementById("fullName").value;
+        if (fullName.length < 3) {
+          document.getElementById("fullNameError").innerText =
+            "Full Name must be at least 3 characters long.";
+          isValid = false;
+        } else {
+          document.getElementById("fullNameError").innerText = "";
+        }
+
+        // Age validation (must be a number)
+        var age = document.getElementById("age").value;
+        if (isNaN(age) || age < 1 || age > 100) {
+          document.getElementById("ageError").innerText =
+            "Enter a valid age (between 1 and 100).";
+          isValid = false;
+        } else {
+          document.getElementById("ageError").innerText = "";
+        }
+
+        // Gender validation
+        var gender = document.querySelector('input[name="txtgender"]:checked');
+        if (!gender) {
+          document.getElementById("genderError").innerText =
+            "Please select a gender.";
+          isValid = false;
+        } else {
+          document.getElementById("genderError").innerText = "";
+        }
+
+        // Date of Birth validation
+        var dob = document.getElementById("dob").value;
+        if (dob === "") {
+          document.getElementById("dobError").innerText =
+            "Please enter your date of birth.";
+          isValid = false;
+        } else {
+          document.getElementById("dobError").innerText = "";
+        }
+
+        // Email validation
+        var email = document.getElementById("email").value;
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+          document.getElementById("emailError").innerText =
+            "Please enter a valid email address.";
+          isValid = false;
+        } else {
+          document.getElementById("emailError").innerText = "";
+        }
+
+        // Phone number validation
+        var phone = document.getElementById("phone").value;
+        var phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(phone)) {
+          document.getElementById("phoneError").innerText =
+            "Enter a valid 10-digit phone number.";
+          isValid = false;
+        } else {
+          document.getElementById("phoneError").innerText = "";
+        }
+
+        // File upload validation
+        /*var fileInput = document.getElementById("usephoto");
+        var file = fileInput.files[0];
+        if (!file) {
+          document.getElementById("photoError").innerText =
+            "Please upload a photo.";
+          isValid = false;
+        } else {
+          document.getElementById("photoError").innerText = "";
+        }*/
+
+        // Username validation
+        var username = document.getElementById("username").value;
+        if (username.length < 3) {
+          document.getElementById("usernameError").innerText =
+            "Username must be at least 3 characters long.";
+          isValid = false;
+        } else {
+          document.getElementById("usernameError").innerText = "";
+        }
+
+        // Password validation
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var passwordPattern =
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
+
+        if (!passwordPattern.test(password)) {
+          document.getElementById("passwordError").innerText =
+            "Password must be at least 6 characters long, and contain at least one digit, one uppercase letter, one lowercase letter, and one special character.";
+          isValid = false;
+        } else {
+          document.getElementById("passwordError").innerText = "";
+        }
+
+        // Confirm Password validation
+        if (password !== confirmPassword) {
+          document.getElementById("confirmPasswordError").innerText =
+            "Passwords do not match.";
+          isValid = false;
+        } else {
+          document.getElementById("confirmPasswordError").innerText = "";
+        }
+
+        return isValid;
       }
     </script>
   </body>

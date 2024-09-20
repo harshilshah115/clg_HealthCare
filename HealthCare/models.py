@@ -29,8 +29,28 @@ class doctor(models.Model):
     doctor_email=models.CharField(max_length=255,null=False,blank=True)
     doctor_image=models.ImageField(upload_to='doctor_image/',max_length=250,null=True,blank=True)
 
+class appointment(models.Model):
+    app_id = models.AutoField(primary_key=True)
+    app_name=models.CharField(max_length=255,null=True,blank=False)
+    app_age = models.CharField(max_length=3,null=False,blank=False)
+    app_gender = models.CharField(max_length=6, null=True, blank=True)
+    app_phono = models.CharField(max_length=10,null=False,blank=False)
+    app_email = models.EmailField(max_length=255,null=False,blank=False)
+    app_address = models.CharField(max_length=700,null=True,blank=False)
+    app_illness = models.CharField(max_length=1000,null=True,blank=False)
+    app_dateandtime = models.DateTimeField()
+    app_status = models.CharField(max_length=10, choices=[('accept', 'Accepted'), ('reject', 'Rejected'), ('pending', 'Pending')], default='pending')
+
 class medicines(models.Model):
     medicines_name=models.CharField(max_length=255, null=False, blank=True)
     medicines_description=models.CharField(max_length=255, null=False, blank=True)
     medicines_price=models.CharField(max_length=255, null=False, blank=True)
     medicines_image=models.ImageField(upload_to='medicines_image/',max_length=250,null=True,blank=True)
+
+
+class ordermedicines(models.Model):
+    companyname = models.CharField(max_length=255, null=False, blank=True)
+    customername = models.CharField(max_length=255, null=False, blank=True)
+    medicinename = models.CharField(max_length=505, null=False, blank=True)
+    quantity = models.CharField(max_length=255, null=False, blank=True)
+    amount = models.CharField(max_length=255, null=False, blank=True)

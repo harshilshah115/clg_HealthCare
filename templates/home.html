@@ -95,7 +95,11 @@
           <div class="col-sm-4 m-auto">
             <div class="appo-detail text-center text-white fs-5">
               <p class="p-0 m-0">Last Appointment Status</p>
-              <span class="p-0 m-0">Pending</span>
+              {% if last_appointment %}
+              <span class="p-0 m-0">{{last_appointment.app_status}}</span>
+              {% else %}
+              <p>No appointments found.</p>
+              {% endif %}
             </div>
           </div>
 
@@ -187,9 +191,9 @@
 
                 <div
                   class="modal fade"
-                  id="exampleModalToggle"
+                  id="exampleModalToggle{{ forloop.counter }}"
                   aria-hidden="true"
-                  aria-labelledby="exampleModalToggleLabel"
+                  aria-labelledby="exampleModalToggleLabel{{ forloop.counter }}"
                   tabindex="-1"
                 >
                   <div class="modal-dialog modal-dialog-centered">
@@ -197,7 +201,7 @@
                       <div class="modal-header">
                         <h1
                           class="modal-title fs-5"
-                          id="exampleModalToggleLabel"
+                          id="exampleModalToggleLabel{{ forloop.counter }}"
                         >
                           Detail:
                         </h1>
@@ -227,7 +231,7 @@
                           <div class="col">
                             <div class="harsh-img">
                               <img
-                                src="/static/image/doctor-1-img.png"
+                                src="{{doc.doctor_image.url}}"
                                 alt=""
                               />
                             </div>
@@ -237,7 +241,7 @@
                       <div class="modal-footer">
                         <button
                           class="btn btn-primary"
-                          data-bs-target="#exampleModalToggle2"
+                          data-bs-target="#exampleModalToggle2{{ forloop.counter }}"
                           data-bs-toggle="modal"
                         >
                           Make Appointment
@@ -248,9 +252,9 @@
                 </div>
                 <div
                   class="modal fade"
-                  id="exampleModalToggle2"
+                  id="exampleModalToggle2{{ forloop.counter }}"
                   aria-hidden="true"
-                  aria-labelledby="exampleModalToggleLabel2"
+                  aria-labelledby="exampleModalToggleLabel2{{ forloop.counter }}"
                   tabindex="-1"
                 >
                   <div class="modal-dialog modal-dialog-centered">
@@ -258,7 +262,7 @@
                       <div class="modal-header">
                         <h1
                           class="modal-title fs-5"
-                          id="exampleModalToggleLabel2"
+                          id="exampleModalToggleLabel2{{ forloop.counter }}"
                         >
                           Appointment Form
                         </h1>
@@ -269,23 +273,27 @@
                           aria-label="Close"
                         ></button>
                       </div>
+                      <form action="{% url 'submitappoinment' %}" method="POST">
+                        {% csrf_token %}
                       <div class="modal-body text-start">
                         <div class="input-field my-1">
                           <!-- <label for="fname">Full Name</label> -->
                           <input
-                            type="text"
-                            name="fname"
-                            placeholder="Enter Full Name"
+                            type="hidden"
+                            name="txtfname"
+                            value="{{profiles.fullname_reg}}"
                             class="w-100 p-1"
                           />
+                          <p>Full Name: {{profiles.fullname_reg}}</p>
                         </div>
 
                         <div class="input-field my-1">
                           <!-- <label for="age">Age</label> -->
                           <input
                             type="text"
-                            name="age"
+                            name="txtage"
                             placeholder="Enter Your Age"
+                            maxlength="2"
                             class="w-100 p-1"
                           />
                         </div>
@@ -294,14 +302,14 @@
                           <label for="gender" class="me-3">Gender</label>
                           <input
                             type="radio"
-                            name="gender"
+                            name="txtgender"
                             value="Male"
                             class="ms-1 py-2"
                           />
                           Male
                           <input
                             type="radio"
-                            name="gender"
+                            name="txtgender"
                             value="Female"
                             class="ms-3"
                           />
@@ -312,8 +320,9 @@
                           <!-- <label for="mono">Contact Number</label> -->
                           <input
                             type="text"
-                            name="mono"
+                            name="txtmono"
                             placeholder="Enter Valid Phone Number"
+                            maxlength="10"
                             class="w-100 p-1"
                           />
                         </div>
@@ -322,14 +331,14 @@
                           <!-- <label for="email">Email Id</label> -->
                           <input
                             type="text"
-                            name="email"
+                            name="txtemail"
                             placeholder="Enter Email ID"
                             class="w-100 p-1"
                           />
                         </div>
                         <div class="input-field m-2">
                           <textarea
-                            name="address"
+                            name="txtaddress"
                             id="address"
                             rows="4"
                             cols="40"
@@ -340,7 +349,7 @@
 
                         <div class="input-field m-2">
                           <textarea
-                            name="illness"
+                            name="txtillness"
                             id="illness"
                             rows="4"
                             cols="40"
@@ -353,26 +362,28 @@
                           <label for="time">Date Time</label>
                           <input
                             type="datetime-local"
-                            name="dtime"
+                            name="txtdtime"
                             class="p-1"
                           />
                         </div>
                       </div>
                       <div class="modal-footer">
                         <button
+                          type="submit"
                           class="btn btn-primary"
                           data-bs-target=""
                           data-bs-toggle="modal"
                         >
                           Submit
                         </button>
+                      </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <button
                   class="btn btn-primary"
-                  data-bs-target="#exampleModalToggle"
+                  data-bs-target="#exampleModalToggle{{ forloop.counter }}"
                   data-bs-toggle="modal"
                 >
                   View
@@ -380,7 +391,6 @@
               </div>
             </div>
           </div>
-
           <!-- <div class="col-lg-3 col-md-6 pt-3">
             <div class="doctor2 doc-div">
               <div class="doctor-img">

@@ -100,30 +100,35 @@
                         ></button>
                       </div>
                       <div class="modal-body">
+                        <form action="{% url 'ordermedicine' %}" method="POST">
+                          {% csrf_token %}
                         <table>
                           <tr>
                             <th>Company Name :</th>
-                            <td>HealthCare</td>
+                            <td><input type="hidden" name="txtcompanyname" value="HealthCare" />HealthCare</td>
                           </tr>
                           <tr>
                             <th>Customer Name :</th>
-                            <td>{{customer_name }}</td>
+                            <td><input type="hidden" name="txtcustomername" value="{{customer_name }}" />{{customer_name }}</td>
                           </tr>
                           <tr>
                             <th>Medicine Name :</th>
                             <td id="medicineName_{{ forloop.counter }}">N/A</td>
+                            <input type="hidden" name="txtmedicinename" id="hiddenMedicineName_{{ forloop.counter }}" />
                           </tr>
                           <tr>
                             <th>Quantity :</th>
                             <td id="quantityDisplay_{{ forloop.counter }}">
                               N/A
                             </td>
+                            <input type="hidden" name="txtquantity" id="hiddenQuantity_{{ forloop.counter }}" />
                           </tr>
                           <tr>
                             <th>Amount</th>
                             <td id="amountDisplay_{{ forloop.counter }}">
                               N/A
                             </td>
+                            <input type="hidden" name="txtamount" id="hiddenAmount_{{ forloop.counter }}" />
                           </tr>
                         </table>
                         <br /><br />
@@ -131,12 +136,13 @@
                       </div>
                       <div class="modal-footer">
                         <button
-                          type="button"
+                          type="submit"
                           class="btn btn-primary px-4 py-1"
                           data-bs-dismiss="modal"
                         >
                           OK
                         </button>
+                      </form>
                       </div>
                     </div>
                   </div>
@@ -169,6 +175,12 @@
             quantity;
           document.getElementById("amountDisplay_" + index).textContent =
             amount + " /-";
+
+          // Update hidden input values for form submission
+          document.getElementById("hiddenMedicineName_" + index).value = medName;
+          document.getElementById("hiddenQuantity_" + index).value = quantity;
+          document.getElementById("hiddenAmount_" + index).value = amount;
+
         });
       });
     </script>

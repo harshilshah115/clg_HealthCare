@@ -9,18 +9,27 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="appo-title">Appointment Management</h1>
-
+      <div class="title">
+        <h1 class="appo-title">Appointment Management</h1>
+        <a href="{% url 'home' %}"><i class="fa-solid fa-xmark"></i>home</a>
+      </div>
       <!-- Appointment Verified Section -->
       <div class="appointment-section verified">
         <div class="section-header">
           <h2>Appointment Verified</h2>
           <span class="status verified-status">✔ Verified</span>
         </div>
+        {% if accepted_appointments %}
         <ul class="appointment-list">
-          <li>Appointment ID: 001 - 15th Sept 2024, 10:00 AM</li>
-          <li>Appointment ID: 002 - 16th Sept 2024, 12:00 PM</li>
+          {% for appointment in accepted_appointments %}
+          <li>
+            {{ appointment.app_name }} - {{ appointment.app_dateandtime }}
+          </li>
+          {% endfor %}
         </ul>
+        {% else %}
+        <p>No accepted appointments.</p>
+        {% endif %}
       </div>
 
       <!-- Appointment Pending Section -->
@@ -29,10 +38,17 @@
           <h2>Appointment Pending</h2>
           <span class="status pending-status">⏳ Pending</span>
         </div>
+        {% if pending_appointments %}
         <ul class="appointment-list">
-          <li>Appointment ID: 003 - 17th Sept 2024, 11:00 AM</li>
-          <li>Appointment ID: 004 - 18th Sept 2024, 09:00 AM</li>
+          {% for appointment in pending_appointments %}
+          <li>
+            {{ appointment.app_name }} - {{ appointment.app_dateandtime }}
+          </li>
+          {% endfor %}
         </ul>
+        {% else %}
+        <p>No pending appointments.</p>
+        {% endif %}
       </div>
 
       <!-- Appointment Rejected Section -->
@@ -41,10 +57,17 @@
           <h2>Appointment Rejected</h2>
           <span class="status rejected-status">✖ Rejected</span>
         </div>
+        {% if rejected_appointments %}
         <ul class="appointment-list">
-          <li>Appointment ID: 005 - 19th Sept 2024, 10:30 AM</li>
-          <li>Appointment ID: 006 - 20th Sept 2024, 02:00 PM</li>
+          {% for appointment in rejected_appointments %}
+          <li>
+            {{ appointment.app_name }} - {{ appointment.app_dateandtime }}
+          </li>
+          {% endfor %}
         </ul>
+        {% else %}
+        <p>No rejected appointments.</p>
+        {% endif %}
       </div>
     </div>
   </body>

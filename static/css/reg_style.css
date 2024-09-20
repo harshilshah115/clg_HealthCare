@@ -27,12 +27,40 @@ body {
     background-color: #32665bfa;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.form-group{
+
+/* .card-body .form-group 
+{
     position: relative;
 }
-.form-group  img{
-    width: 5%;
+.card-body .form-group img
+{
     position: absolute;
-    bottom: 12%;
-    right: 1%;
+    bottom: 8%;
+    right: 2%;
+    width: 5%;
+} */
+
+.eyepwd{
+    position: relative; /* Ensures the eye icon is positioned relative to this container */
 }
+
+#eyeicon,#eyeicon2 {
+    position: absolute;
+    top: 52%; /* Align vertically in the middle of the input */
+    right: 15px; /* Distance from the right edge of the input */
+    transform: translateY(-50%); /* Vertically center the icon */
+    width: 30px; /* Set the width of the eye icon */
+    height: 30px; /* Set the height of the eye icon */
+    cursor: pointer;
+    z-index: 2; /* Ensures the icon is above the input */
+}
+
+input.pwdicon {
+    padding-right: 45px; /* Adds padding to the right to make room for the eye icon */
+}
+
+#confirmPasswordError {
+    display: block;
+    margin-top: 5px;
+}
+

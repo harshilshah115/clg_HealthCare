@@ -19,7 +19,21 @@ body {
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
-
+.title{
+    position: relative;
+}
+.title i{
+    position: absolute;
+    top: 0;
+    right: 2%;
+    font-size: 30px;
+    font-weight: 700;
+    color: #d3c8c8;
+    cursor: pointer;
+}
+.title i:hover{
+    color: black;
+}
 .appo-title{
     text-align: center;
     margin-bottom: 40px;

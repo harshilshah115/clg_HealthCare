@@ -15,9 +15,7 @@
       function preventBack() {
         window.history.forward();
       }
-
       setTimeout("preventBack()", 0);
-
       window.onunload = function () {
         null;
       };
@@ -32,7 +30,12 @@
               <h3>Register</h3>
             </div>
             <div class="card-body">
-              <form action="{% url 'register' %}" method="POST">
+              <form
+                action="{% url 'register' %}"
+                method="POST"
+                id="registrationForm"
+                onsubmit="return validateForm()"
+              >
                 {% csrf_token %}
                 <div class="form-group">
                   <label for="fullName">Full Name</label>
@@ -44,6 +47,7 @@
                     placeholder="Enter your full name"
                     required
                   />
+                  <small id="fullNameError" class="text-danger"></small>
                 </div>
                 <div class="form-group">
                   <label for="dob">Date of Birth</label>
@@ -53,15 +57,17 @@
                     id="dob"
                     name="txtdob"
                   />
+                  <small id="dobError" class="text-danger"></small>
                 </div>
                 <div class="form-group">
-                  <label for="fullName">Age</label>
+                  <label for="age">Age</label>
                   <input
                     type="text"
                     class="form-control"
                     id="age"
                     name="txtage"
                     placeholder="Enter your age"
+                    maxlength="2"
                     required
                   />
                 </div>
@@ -75,6 +81,7 @@
                     placeholder="Enter your email"
                     required
                   />
+                  <small id="emailError" class="text-danger"></small>
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone Number</label>
@@ -84,7 +91,9 @@
                     id="phone"
                     name="txtphone"
                     placeholder="Enter your phone number"
+                    maxlength="10"
                   />
+                  <small id="phoneError" class="text-danger"></small>
                 </div>
                 <div class="form-group">
                   <label for="username">Username</label>
@@ -96,40 +105,47 @@
                     placeholder="Create your Username"
                     required
                   />
+                  <small id="usernameError" class="text-danger"></small>
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <img
-                    src="/static/image/open-eye-icon.png"
-                    alt=""
-                    onclick="pass1()"
-                    id="eyeicon"
-                  />
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="txtpassword"
-                    placeholder="Enter your password"
-                    required
-                  />
+                  <div class="eyepwd">
+                    <img
+                      src="/static/image/open-eye-icon.png"
+                      alt=""
+                      onclick="pass1()"
+                      id="eyeicon"
+                    />
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="txtpassword"
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>
+                  <small id="passwordError" class="text-danger"></small>
                 </div>
                 <div class="form-group">
                   <label for="confirmPassword">Confirm Password</label>
-                  <img
-                    src="/static/image/open-eye-icon.png"
-                    alt=""
-                    id="eyeicon2"
-                    onclick="pass2()"
-                  />
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="confirmPassword"
-                    name="txtconfirmPassword"
-                    placeholder="Confirm your password"
-                    required
-                  />
+                  <div class="eyepwd">
+                    <img
+                      src="/static/image/open-eye-icon.png"
+                      alt=""
+                      id="eyeicon2"
+                      onclick="pass2()"
+                    />
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmPassword"
+                      name="txtconfirmPassword"
+                      placeholder="Confirm your password"
+                      required
+                    />
+                  </div>
+                  <small id="confirmPasswordError" class="text-danger"></small>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">
@@ -146,7 +162,8 @@
     </div>
 
     <script>
-      var a;
+      var a = 0;
+      var b = 0;
       function pass1() {
         if (a == 1) {
           document.getElementById("password").type = "password";
@@ -161,7 +178,6 @@
         }
       }
 
-      var b;
       function pass2() {
         if (b == 1) {
           document.getElementById("confirmPassword").type = "password";
@@ -174,6 +190,93 @@
             "/static/image/hidden-eye-icon.png";
           b = 1;
         }
+      }
+
+      function validateForm() {
+        var isValid = true;
+
+        // Full Name validation
+        var fullName = document.getElementById("fullName").value;
+        var namePattern = /^[a-zA-Z_ ]+$/;
+
+        if (fullName.length < 3) {
+          document.getElementById("fullNameError").innerText =
+            "Full Name must be at least 3 characters long.";
+          isValid = false;
+        } else if (!namePattern.test(fullName)) {
+          document.getElementById("fullNameError").innerText =
+            "Full Name can only contain letters and underscores.";
+          isValid = false;
+        } else {
+          document.getElementById("fullNameError").innerText = "";
+        }
+
+        // Email validation
+        var email = document.getElementById("email").value;
+        var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!email.match(emailPattern)) {
+          document.getElementById("emailError").innerText =
+            "Enter a valid email address.";
+          isValid = false;
+        } else {
+          document.getElementById("emailError").innerText = "";
+        }
+
+        // Username validation
+        var username = document.getElementById("username").value;
+        if (username.length < 3) {
+          document.getElementById("usernameError").innerText =
+            "Username must be at least 3 characters long.";
+          isValid = false;
+        } else {
+          document.getElementById("usernameError").innerText = "";
+        }
+
+        // Password validation
+        var password = document.getElementById("password").value;
+        var passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
+
+        if (!passwordRegex.test(password)) {
+          document.getElementById("passwordError").innerText =
+            "Password must be at least 6 characters long, contain at least one digit, one uppercase letter, and one lowercase letter.";
+          isValid = false;
+        } else {
+          document.getElementById("passwordError").innerText = "";
+        }
+
+        // Confirm Password validation
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        if (confirmPassword !== password) {
+          document.getElementById("confirmPasswordError").innerText =
+            "Passwords do not match.";
+          isValid = false;
+        } else {
+          document.getElementById("confirmPasswordError").innerText = "";
+        }
+
+        // Phone number validation
+        var phone = document.getElementById("phone").value;
+        var phonePattern = /^[0-9]{10}$/;
+        if (!phone.match(phonePattern)) {
+          document.getElementById("phoneError").innerText =
+            "Enter a valid 10-digit phone number.";
+          isValid = false;
+        } else {
+          document.getElementById("phoneError").innerText = "";
+        }
+
+        // Date of Birth validation
+        var dob = document.getElementById("dob").value;
+        if (!dob) {
+          document.getElementById("dobError").innerText =
+            "Please enter your date of birth.";
+          isValid = false;
+        } else {
+          document.getElementById("dobError").innerText = "";
+        }
+
+        return isValid;
       }
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
